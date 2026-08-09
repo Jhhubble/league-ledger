@@ -507,3 +507,26 @@ button:nth-of-type(1) {
 .btn-remove-history:hover {
   background: #e5e7eb;
 }
+
+.bet-participants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+
+.bet-participants-label {
+  font-weight: 700;
+  color: #374151;
+}
+
+.bet-participant {
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #374151;
+}

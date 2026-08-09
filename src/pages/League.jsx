@@ -658,7 +658,28 @@ function League() {
                         {bet.creator_side === 'yes' ? 'NO' : 'YES'}
                         {')'}
                     </span>
-                </div>    
+                </div>
+                
+                <div className="bet-participants">
+                    <span className="bet-participants-label">
+                        In This Bet:
+                    </span>
+
+                    {(bet.bet_positions || []).map((position) => (
+                        <span
+                        key={position.id}
+                        className="bet-participant"
+                        >
+                        {getUsernameByUserId(position.user_id)}
+                        {' ('}
+                        {position.side.toUpperCase()}
+                        {') — $'}
+                        {Number(position.stake).toFixed(2)}
+                        </span>
+                    ))}
+                    </div>
+
+
 
                 {/* ACCEPT / DECLINE */}
 
