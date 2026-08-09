@@ -530,3 +530,22 @@ button:nth-of-type(1) {
   font-weight: 600;
   color: #374151;
 }
+
+.side-bettors {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 14px;
+  padding-top: 10px;
+}
+
+.side-bettor {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.side-bettor span:first-child {
+  font-weight: 600;
+}

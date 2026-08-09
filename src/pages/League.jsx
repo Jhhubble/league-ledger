@@ -659,28 +659,7 @@ function League() {
                         {')'}
                     </span>
                 </div>
-                
-                <div className="bet-participants">
-                    <span className="bet-participants-label">
-                        In This Bet:
-                    </span>
-
-                    {(bet.bet_positions || []).map((position) => (
-                        <span
-                        key={position.id}
-                        className="bet-participant"
-                        >
-                        {getUsernameByUserId(position.user_id)}
-                        {' ('}
-                        {position.side.toUpperCase()}
-                        {') — $'}
-                        {Number(position.stake).toFixed(2)}
-                        </span>
-                    ))}
-                    </div>
-
-
-
+            
                 {/* ACCEPT / DECLINE */}
 
                 {bet.status === 'pending' &&
@@ -722,45 +701,88 @@ function League() {
 
                 {(bet.status === 'open' ||
                     bet.status === 'locked') && (
-                    <div className="odds-box">
+                        <div className="odds-box">
 
+                        {/* YES SIDE */}
                         <div>
-                        <h4>YES</h4>
+                            <h4>YES</h4>
 
-                        <p>
+                            <p>
                             $
                             {bet.status === 'locked'
-                            ? Number(bet.locked_yes_pool).toFixed(2)
-                            : yesPool.toFixed(2)}
+                                ? Number(bet.locked_yes_pool).toFixed(2)
+                                : yesPool.toFixed(2)}
                             {' '}backed
-                        </p>
+                            </p>
 
-                        <strong>
+                            <strong>
                             {bet.status === 'locked'
-                            ? `${bet.locked_yes_odds > 0 ? '+' : ''}${bet.locked_yes_odds}`
-                            : yesOdds || 'N/A'}
-                        </strong>
+                                ? `${bet.locked_yes_odds > 0 ? '+' : ''}${bet.locked_yes_odds}`
+                                : yesOdds || 'N/A'}
+                            </strong>
+
+                            <div className="side-bettors">
+                            {(bet.bet_positions || [])
+                                .filter((position) => position.side === 'yes')
+                                .map((position) => (
+                                <div
+                                    key={position.id}
+                                    className="side-bettor"
+                                >
+                                    <span>
+                                    {getUsernameByUserId(position.user_id)}
+                                    </span>
+
+                                    <span>
+                                    ${Number(position.stake).toFixed(2)}
+                                    </span>
+                                </div>
+                                ))}
+                            </div>
                         </div>
 
-                        <div>
-                        <h4>NO</h4>
 
-                        <p>
+                        {/* NO SIDE */}
+                        <div>
+                            <h4>NO</h4>
+
+                            <p>
                             $
                             {bet.status === 'locked'
-                            ? Number(bet.locked_no_pool).toFixed(2)
-                            : noPool.toFixed(2)}
+                                ? Number(bet.locked_no_pool).toFixed(2)
+                                : noPool.toFixed(2)}
                             {' '}backed
-                        </p>
+                            </p>
 
-                        <strong>
+                            <strong>
                             {bet.status === 'locked'
-                            ? `${bet.locked_no_odds > 0 ? '+' : ''}${bet.locked_no_odds}`
-                            : noOdds || 'N/A'}
-                        </strong>
+                                ? `${bet.locked_no_odds > 0 ? '+' : ''}${bet.locked_no_odds}`
+                                : noOdds || 'N/A'}
+                            </strong>
+
+                            <div className="side-bettors">
+                            {(bet.bet_positions || [])
+                                .filter((position) => position.side === 'no')
+                                .map((position) => (
+                                <div
+                                    key={position.id}
+                                    className="side-bettor"
+                                >
+                                    <span>
+                                    {getUsernameByUserId(position.user_id)}
+                                    </span>
+
+                                    <span>
+                                    ${Number(position.stake).toFixed(2)}
+                                    </span>
+                                </div>
+                                ))}
+                            </div>
                         </div>
 
-                    </div>
+                        </div>
+
+                      
                     )}
 
                 {/* JOIN BET */}
